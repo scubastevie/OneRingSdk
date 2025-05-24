@@ -74,7 +74,7 @@ namespace MovieQuoteSdk.Tests
         [Fact]
         public async Task GetMoviesAsync_ReturnsMovies()
         {
-            var mockResponse = new { docs = new[] { new { id = "1", name = "The Fellowship of the Ring" } } };
+            var mockResponse = new { docs = new[] { new { _id = "1", name = "The Fellowship of the Ring" } } };
             var client = CreateMockedClient("/movie", mockResponse);
             var result = await client.GetMoviesAsync();
             Assert.Single(result);
@@ -83,7 +83,7 @@ namespace MovieQuoteSdk.Tests
         [Fact]
         public async Task GetMovieByIdAsync_ReturnsMovie()
         {
-            var mockResponse = new { id = "1", name = "The Fellowship of the Ring" };
+            var mockResponse = new { _id = "1", name = "The Fellowship of the Ring" };
             var client = CreateMockedClient("/movie/1", mockResponse);
             var result = await client.GetMovieByIdAsync("1");
             Assert.Equal("The Fellowship of the Ring", result.Name);
@@ -92,7 +92,7 @@ namespace MovieQuoteSdk.Tests
         [Fact]
         public async Task GetQuotesForMovieAsync_ReturnsQuotes()
         {
-            var mockResponse = new { docs = new[] { new { id = "1", dialog = "Even the smallest person can change the course of the future." } } };
+            var mockResponse = new { docs = new[] { new { _id = "1", dialog = "Even the smallest person can change the course of the future." } } };
             var client = CreateMockedClient("/movie/1/quote", mockResponse);
             var result = await client.GetQuotesForMovieAsync("1");
             Assert.Single(result);
@@ -101,7 +101,7 @@ namespace MovieQuoteSdk.Tests
         [Fact]
         public async Task GetQuotesAsync_ReturnsQuotes()
         {
-            var mockResponse = new { docs = new[] { new { id = "1", dialog = "A wizard is never late." } } };
+            var mockResponse = new { docs = new[] { new { _id = "1", dialog = "A wizard is never late." } } };
             var client = CreateMockedClient("/quote", mockResponse);
             var result = await client.GetQuotesAsync();
             Assert.Single(result);
@@ -110,7 +110,7 @@ namespace MovieQuoteSdk.Tests
         [Fact]
         public async Task GetQuoteByIdAsync_ReturnsQuote()
         {
-            var mockResponse = new { id = "1", dialog = "Fly, you fools!" };
+            var mockResponse = new { _id = "1", dialog = "Fly, you fools!" };
             var client = CreateMockedClient("/quote/1", mockResponse);
             var result = await client.GetQuoteByIdAsync("1");
             Assert.Equal("Fly, you fools!", result.Dialog);
@@ -125,22 +125,22 @@ namespace MovieQuoteSdk.Tests
                 {
                     docs = new[]
                     {
-                        new { id = "1", name = "The Fellowship of the Ring" },
-                        new { id = "2", name = "The Two Towers" }
+                        new { _id = "1", name = "The Fellowship of the Ring" },
+                        new { _id = "2", name = "The Two Towers" }
                     }
                 },
                 ["/movie/1/quote"] = new
                 {
                     docs = new[]
                     {
-                        new { id = "q1", dialog = "Quote from Fellowship" }
+                        new { _id = "q1", dialog = "Quote from Fellowship" }
                     }
                 },
                 ["/movie/2/quote"] = new
                 {
                     docs = new[]
                     {
-                        new { id = "q2", dialog = "Quote from Two Towers" }
+                        new { _id = "q2", dialog = "Quote from Two Towers" }
                     }
                 }
             };
@@ -162,22 +162,22 @@ namespace MovieQuoteSdk.Tests
                 {
                     docs = new[]
                     {
-                        new { id = "b1", name = "The Fellowship of the Ring" },
-                        new { id = "b2", name = "The Two Towers" }
+                        new { _id = "b1", name = "The Fellowship of the Ring" },
+                        new { _id = "b2", name = "The Two Towers" }
                     }
                 },
                 ["/v2/book/b1/chapter"] = new
                 {
                     docs = new[]
                     {
-                        new { id = "c1", chapterName = "A Long-expected Party" }
+                        new { _id = "c1", chapterName = "A Long-expected Party" }
                     }
                 },
                 ["/v2/book/b2/chapter"] = new
                 {
                     docs = new[]
                     {
-                        new { id = "c2", chapterName = "The Departure of Boromir" }
+                        new { _id = "c2", chapterName = "The Departure of Boromir" }
                     }
                 }
             };
